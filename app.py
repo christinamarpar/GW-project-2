@@ -20,7 +20,7 @@ app = Flask(__name__)
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///db/maternal_data.sqlite", echo=False)
+engine = create_engine("sqlite:///db/maternal_health.sqlite", echo=False)
 
 Base = automap_base()
 Base.prepare(engine, reflect=True)
@@ -33,7 +33,7 @@ session = Session(engine)
 #################################################
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('project 2.html')
 
 @app.route('/maternal_data')
 def maternal_data():

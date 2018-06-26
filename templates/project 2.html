@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>World Maternal Health</title>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>World Maternal Health</h1>
+            <p>Constructed using Global Indicators Health data from the World Bank.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Selected Sample</h3>
+                    </div>
+                    <div class="panel-body">
+                        <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                        <script>Plotly.d3.json('/indicators', function(error, data){
+                            if (error) return console.warn(error);
+                            var select = document.getElementById("selDataset"); 
+                    
+                            for(var i = 0; i < data.length; i++) {
+                            var opt = data[i];
+                            var el = document.createElement("option");
+                            el.textContent = opt.replace(/_/g, " ");
+                            el.value = opt;
+                            select.appendChild(el);
+                            }})
+                        </script>
+                        <ul id="sampleMetadata"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Maternal Data</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="pieChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">All Maternal Results</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="bubbleChart"></div>
+                    </div>  
+                </div>  
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+        // // Plot the default route once the page loads
+        var default_url = "/";
+        Plotly.d3.json(default_url, function(error, response) {
+        })
+
+        // Get new data whenever the dropdown selection changes
+        function optionChanged(route) {
+            console.log(route);
+            Plotly.d3.json(`/${route}`, function(error, data) {
+                console.log("newdata", data);
+                updatePlotly(data);
+            });
+        }
+    </script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>
