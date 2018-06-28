@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <title>World Maternal Health</title>
+
+    <!-- Leaflet CSS & JS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+
+    <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="data.geojson"></script>
 </head>
 
 <body>
@@ -46,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-10" id="choropleth">
+            <div class="col-md-10" id="map">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">World Choropleth</h3>
@@ -93,6 +104,7 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="{{ url_for('static', filename='js/project 2.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bar_income.js') }}"></script>
+    <script type="text/javascript" src="lifetime.js"></script>
   
 </body>
 
