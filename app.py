@@ -41,7 +41,6 @@ def maternal_data():
     results_df = pd.read_sql_query(results, session.bind)
     results_df.set_index('id', inplace=True)
     return results_df.to_json(orient='records')
-    #
 
 @app.route('/indicators')
 def selectOpts():
@@ -55,7 +54,6 @@ def selectOpts():
 
 @app.route('/mat_data/<indicator>')
 def getIndicatorData(indicator):
-    """Return a list of dictionaries containing sorted lists  for `otu_ids`"""
     results = session.query(MatStats.country_region, getattr(MatStats, indicator)).all()
     
     df = pd.DataFrame(results, columns=['country_region', 'indicator_values'])
@@ -67,7 +65,6 @@ def getIndicatorData(indicator):
     mat_list = []
     mat_list.append(mat_dict)
     return jsonify(mat_list)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
