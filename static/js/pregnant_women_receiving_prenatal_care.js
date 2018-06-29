@@ -1,11 +1,10 @@
-var mapboxAccessToken = "pk.eyJ1IjoidGFtbWllbHlubmUiLCJhIjoiY2ppY2F2YmFwMWllbDNwbG1xaHQ1dThtbiJ9.PHi-Izw6J6oJCJ403-J1KQ"
-var map = L.map('map_target')
 map.off();
 map.remove();
+map = L.map('map_target')
 map.setView([30, 31], 1.5)
 
-L.tileLayer("https://http://api.mapbox.com/v4/mapbox.light.html?access_token=" + mapboxAccessToken, {
-    id: "mapbos.light",
+L.tileLayer("https://api.mapbox.com/v4/mapbox.light.html?access_token=" + mapboxAccessToken, {
+    id: "mapbox.light",
     attribution: "data.geojson"
 }).addTo(map);
 

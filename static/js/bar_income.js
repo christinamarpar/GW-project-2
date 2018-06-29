@@ -1,5 +1,11 @@
 function init() {
+	var map_target = document.getElementById("map_target");
 
+	var script = document.createElement('script');
+	script.setAttribute('type', 'text/javascript');
+	script.setAttribute('src', `/static/js/init_lifetime_map.js`);
+	
+	map_target.appendChild(script);
 
 	Plotly.d3.json('/mat_data/lifetime_risk_maternal_death', function (error, mat_list) {
 		if (error) return console.warn(error);
@@ -48,14 +54,17 @@ function optionChanged(dataset) {
 
 	});
 
-	// append a new script tag to load the map data
-	// console.log("hello");
-	var map_target = document.getElementById("map_target");
+	// clear out map_target html if there is anything in there
+	while (map_target.firstChild) {
+		map_target.removeChild(map_target.firstChild);
+	}
 
+	//save appropriate js code script
 	var script = document.createElement('script');
 	script.setAttribute('type', 'text/javascript');
 	script.setAttribute('src', `/static/js/${dataset}.js`);
 	
+	//write script into map_target html
 	map_target.appendChild(script);
 
 }
