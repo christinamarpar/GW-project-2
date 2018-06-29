@@ -13,12 +13,12 @@ var geojson;
 L.geoJson(maternalData).addTo(map);
 
 function getColor(d) {  
-    return  d > 60  ? "#a63603" :
-            d > 45 ? "#f16913" :
-            d > 30 ? "#fdae6b" :
-            d > 15 ? "#fdd0a2" :
-            d > 0 ? "#fff5eb" :
-                    "#fff5eb";
+    return  d > 60  ? chroma("a63603") :
+            d > 45 ? chroma("f16913") :
+            d > 30 ? chroma("fdae6b") :
+            d > 15 ? chroma("fdd0a2") :
+            d >= 0 ? chroma("fff5eb") :
+                    chroma("fff5eb");
                     
 }
 
