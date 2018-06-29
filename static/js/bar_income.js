@@ -4,9 +4,6 @@ function init() {
 	Plotly.d3.json('/mat_data/lifetime_risk_maternal_death', function (error, mat_list) {
 		if (error) return console.warn(error);
 
-
-
-
 		var data_inc = [{
 			x: [mat_list[0]['country_region'][255], mat_list[0]['country_region'][247], mat_list[0]['country_region'][155], mat_list[0]['country_region'][137], mat_list[0]['country_region'][136]],
 			y: [mat_list[0]['lifetime_risk_maternal_death'][255], mat_list[0]['lifetime_risk_maternal_death'][247], mat_list[0]['lifetime_risk_maternal_death'][155], mat_list[0]['lifetime_risk_maternal_death'][137], mat_list[0]['lifetime_risk_maternal_death'][136]],
@@ -38,9 +35,9 @@ function optionChanged(dataset) {
 		var yinc = []
 
 		xinc = [mat_list[0]['country_region'][255], mat_list[0]['country_region'][247], mat_list[0]['country_region'][155], mat_list[0]['country_region'][137], mat_list[0]['country_region'][136]],
-			yinc = [mat_list[0][dataset][255], mat_list[0][dataset][247], mat_list[0][dataset][155], mat_list[0][dataset][137], mat_list[0][dataset][136]],
+		yinc = [mat_list[0][dataset][255], mat_list[0][dataset][247], mat_list[0][dataset][155], mat_list[0][dataset][137], mat_list[0][dataset][136]],
 
-			ind = dataset.replace(/_/g, " ")
+		ind = dataset.replace(/_/g, " ")
 		ind = ind.charAt(0).toUpperCase() + ind.slice(1).toLowerCase();
 
 		update_inc = { title: ind + " by income" };
@@ -53,17 +50,13 @@ function optionChanged(dataset) {
 
 	// append a new script tag to load the map data
 	// console.log("hello");
-	var map = document.getElementById("map");
-	map.innerHTML = "<div id='map_target'></div>"
-	
-	// map.innerHTML("");
-
+	var map_target = document.getElementById("map_target");
 
 	var script = document.createElement('script');
 	script.setAttribute('type', 'text/javascript');
 	script.setAttribute('src', `/static/js/${dataset}.js`);
-
-	map.appendChild(script);
+	
+	map_target.appendChild(script);
 
 }
 
